@@ -1,0 +1,15 @@
+<div class="card mb-3 mt-1 shadow-sm">
+
+    <div class="card-body">
+            <p class="card-text">
+                <p> От кого: {{ post.author.first_name }} {{ post.author.last_name }}</p>
+                <p> Откликов/Собеседований/Тестовых/Офферов: {{ post.reply|linebreaksbr }}/{{ post.replies_from_employer|linebreaksbr }}/{{ post.test_tasks|linebreaksbr }}/{{ post.offers|linebreaksbr }}</p>
+                <p> Комментарий: {{ post.comment|linebreaksbr }} </p>
+            </p>
+            {% if user == post.author %}
+            <a class="btn btn-sm text-muted" href="{% url 'reviews:edit_review' post.author.username post.id %}" role="button"> Редактировать</a>
+                        
+                {% endif %}
+                <small class="text-muted">{{ post.review_date }}</small>
+    </div>
+</div>

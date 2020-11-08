@@ -1,0 +1,78 @@
+{% extends "base.html" %}
+{% block title %} {{ title }} {% endblock %}
+{% block content %}
+{% load static %}
+{% load user_filters %}
+
+    <h1>{{title}}</h1>
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="form__group" >
+            <div class="form__label" style="padding-top: 20px;">Нашел работу (тыкай если принял оффер)</div>
+            <div class="form__field-group">
+                {{ form.job_status|addclass:"form__input" }}
+                {% if form.errors %}
+                    {% for error in form.title.errors %}
+                        <span class="form__error">{{ error|escape }}</span>
+                    {% endfor %}
+                {% endif %}
+            </div>
+        </div>
+
+        <div class="form__group">
+            <div class="form__label"  style="padding-top: 20px;">Откликов</div>
+                {{ form.reply|addclass:"form__input" }}
+                {% if form.errors %}
+                    {% for error in form.title.errors %}
+                        <span class="form__error">{{ error|escape }}</span>
+                    {% endfor %}
+                {% endif %}
+        </div>
+
+        <div class="form__group">
+            <div class="form__label"  style="padding-top: 20px;">Собеседований</div>
+                {{ form.replies_from_employer|addclass:"form__input" }}
+                {% if form.errors %}
+                    {% for error in form.title.errors %}
+                        <span class="form__error">{{ error|escape }}</span>
+                    {% endfor %}
+                {% endif %}
+        </div>
+
+        <div class="form__group">
+            <div class="form__label"  style="padding-top: 20px;">Тестовых</div>
+            
+                {{ form.test_tasks|addclass:"form__input" }}
+                {% if form.errors %}
+                    {% for error in form.title.errors %}
+                        <span class="form__error">{{ error|escape }}</span>
+                    {% endfor %}
+                {% endif %}
+           
+        </div>
+
+        <div class="form__group">
+            <div class="form__label"  style="padding-top: 20px;">Офферов</div>
+           
+                {{ form.offers|addclass:"form__input" }}
+                {% if form.errors %}
+                    {% for error in form.title.errors %}
+                        <span class="form__error">{{ error|escape }}</span>
+                    {% endfor %}
+                {% endif %}
+            
+        </div>
+
+        <div class="form__group">
+            <div class="form__label" style="padding-top: 20px;">Комментарий</div>
+                {{ form.comment|addclass:"form__input" }}
+                {% if form.errors %}
+                    {% for error in form.title.errors %}
+                        <span class="form__error">{{ error|escape }}</span>
+                    {% endfor %}
+                {% endif %}
+        </div>
+        <button type="submit" class="save btn btn-default"> <span style="color:rgb(0, 0, 0)">{{button}}</span></button>
+    </form>
+
+{% endblock %}
